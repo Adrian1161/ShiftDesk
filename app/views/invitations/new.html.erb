@@ -1,0 +1,10 @@
+<h1>Invite an employee to <%= @business.name %></h1>
+
+<% if @invitation.errors.any? %>
+  <p role="alert"><%= @invitation.errors.full_messages.to_sentence %></p>
+<% end %>
+
+<%= form_with model: [@business, @invitation] do |form| %>
+  <p><%= form.label :email, "Employee email" %><br><%= form.email_field :email, required: true %></p>
+  <%= form.submit "Send invitation" %>
+<% end %>

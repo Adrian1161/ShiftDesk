@@ -1,0 +1,2 @@
+class TimeOffRequestsController < ApplicationController
+end
