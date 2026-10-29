@@ -22,7 +22,7 @@ When("I invite {string} to the business") do |email|
 end
 
 Then("an invitation email should be sent to {string}") do |email|
-  expect(ActionMailer::Base.deliveries.last.to).to eq([email])
+  expect(ActionMailer::Base.deliveries.last.to).to eq([ email ])
 end
 
 When("the employee accepts the invitation as {string} with password {string}") do |name, password|

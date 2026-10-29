@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root "businesses#new"
-  resources :businesses, only: [:new, :create, :show] do
-    resources :invitations, only: [:new, :create]
+  resources :businesses, only: [ :new, :create, :show ] do
+    resources :invitations, only: [ :new, :create ]
   end
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: [ :new, :create, :destroy ]
   get "invitations/accept/:token", to: "invitations#accept", as: :accept_invitation
   post "invitations/accept/:token", to: "invitations#join"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

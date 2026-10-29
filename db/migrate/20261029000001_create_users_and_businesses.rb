@@ -19,7 +19,7 @@ class CreateUsersAndBusinesses < ActiveRecord::Migration[8.1]
       t.string :role, null: false
       t.timestamps
     end
-    add_index :memberships, [:user_id, :business_id], unique: true
+    add_index :memberships, [ :user_id, :business_id ], unique: true
 
     create_table :invitations do |t|
       t.references :business, null: false, foreign_key: true
