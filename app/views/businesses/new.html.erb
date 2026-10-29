@@ -1,0 +1,16 @@
+<h1>Register your business</h1>
+
+<% if @business.errors.any? || @user&.errors&.any? %>
+  <div role="alert">
+    <%= (@business.errors.full_messages + (@user&.errors&.full_messages || [])).to_sentence %>
+  </div>
+<% end %>
+
+<%= form_with url: businesses_path, scope: :business do |form| %>
+  <p><%= form.label :name, "Business name" %><br><%= form.text_field :name, required: true %></p>
+  <p><%= form.label :owner_name, "Your name" %><br><%= form.text_field :owner_name, required: true %></p>
+  <p><%= form.label :email %><br><%= form.email_field :email, required: true %></p>
+  <p><%= form.label :password %><br><%= form.password_field :password, required: true %></p>
+  <p><%= form.label :password_confirmation %><br><%= form.password_field :password_confirmation, required: true %></p>
+  <%= form.submit "Create business" %>
+<% end %>
