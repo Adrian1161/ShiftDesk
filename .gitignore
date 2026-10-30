@@ -33,3 +33,9 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Ignore SimpleCov coverage reports.
+/coverage/
+
+# Ignore personal (non-project) files.
+/Personal/
+
