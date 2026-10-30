@@ -6,6 +6,9 @@ class Shift < ApplicationRecord
   validate :ends_after_start
 
   scope :chronological, -> { order(:starts_at) }
+  # Shifts that have not ended yet, including any in progress right now.
+  scope :upcoming, -> { where(ends_at: Time.current..) }
+  scope :published, -> { joins(:schedule_week).merge(ScheduleWeek.published) }
 
   private
 
