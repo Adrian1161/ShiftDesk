@@ -7,3 +7,8 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 config/credentials/*.yml.enc diff=rails_credentials
 config/credentials.yml.enc diff=rails_credentials
+
+# Keep Unix line endings on executable scripts so they run in WSL, Docker and CI
+# even when checked out on Windows (Windows-only .cmd scripts keep CRLF).
+bin/* text eol=lf
+bin/*.cmd text eol=crlf
