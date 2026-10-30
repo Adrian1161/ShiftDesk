@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Shift</title>
+    </head>
+
+    <body>
+        <h1>Create Shift</h1>
+
+        <%= form_with model: [@business, @schedule_week, @shift] do |form| %>
+             <div>
+                <%= label_tag :date, "Date:" %>
+                <%= date_field_tag :date, nil, required: true %>
+            </div>
+
+            <div>
+                <%= label_tag :start_time, "Start Time:" %>
+                <%= time_field_tag :start_time, nil, required: true %>
+            </div>
+
+            <div>
+                <%= label_tag :end_time, "End Time:" %>
+                <%= time_field_tag :end_time, nil, required: true %>
+            </div>
+
+            <div>
+                <%= form.label :membership_id, "Assign Employee:" %>
+                <%= form.collection_select :membership_id,
+                @memberships,
+                :id,
+                ->(membership) { membership.user.name },
+                { prompt: "Select an employee" },
+                {required: true} %>
+            </div>
+
+            <div>
+                <%= form.submit "Create Shift" %>
+            </div>
+
+<% end %>
+
+<p>
+  <%= link_to "Back to Weekly Schedule",
+      business_schedule_week_path(@business, @schedule_week) %>
+</p>
