@@ -1,0 +1,20 @@
+<% content_for :title, "Schedules · #{@business.name}" %>
+
+<h1>Schedules for <%= @business.name %></h1>
+
+<% if @schedule_weeks.any? %>
+  <ul>
+    <% @schedule_weeks.each do |schedule_week| %>
+      <li>
+        <%= link_to schedule_week, [ @business, schedule_week ] %>
+        <% if @membership.manages_schedule? %>
+          (<%= schedule_week.status.humanize %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No schedules have been published yet.</p>
+<% end %>
+
+<p><%= link_to "Back to #{@business.name}", @business %></p>
