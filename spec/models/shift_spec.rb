@@ -7,7 +7,7 @@ RSpec.describe Shift, type: :model do
     let(:employee_other){ Employee.create!(name: "Jane Smith", business: business) }
 
     # Create first shift of first employee
-    let!Existing_shift do
+    let!(:existing_shift) do
         Shift.create!(
             employee: employee,
             business: business,
