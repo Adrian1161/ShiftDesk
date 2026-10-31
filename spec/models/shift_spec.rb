@@ -2,9 +2,9 @@ require 'rails_helper'
 
 # Create the business and employees for testing
 RSpec.describe Shift, type: :model do
-    let(:business){ Business.create!(name: "Business1Test Corp") }
-    let(:employee){ Employee.create!(name: "John Doe", business: business) }
-    let(:employee_other){ Employee.create!(name: "Jane Smith", business: business) }
+    let(:business) { Business.create!(name: "Business1Test Corp") }
+    let(:employee) { Employee.create!(name: "John Doe", business: business) }
+    let(:employee_other) { Employee.create!(name: "Jane Smith", business: business) }
 
     # Create first shift of first employee
     let!(:existing_shift) do
