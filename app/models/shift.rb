@@ -1,5 +1,4 @@
 class Shift < ApplicationRecord
-
     belongs_to :employee
     belongs_to :business
 
@@ -19,5 +18,4 @@ class Shift < ApplicationRecord
             errors.add(:base, "This employee has an overlapping shift in this time window.")
         end
     end
-    
 end

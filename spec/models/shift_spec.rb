@@ -18,7 +18,6 @@ RSpec.describe Shift, type: :model do
 
     # Overlapping shifts
     describe "overlapping shifts" do
-
         ################################################################################
         # Fail when new shift overlaps (same employee) #################################
         ################################################################################
@@ -114,7 +113,5 @@ RSpec.describe Shift, type: :model do
             )
             expect(new_shift).to be_valid
         end
-
     end
-
 end
