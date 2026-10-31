@@ -7,6 +7,14 @@
     <body>
         <h1>Create Shift</h1>
 
+        <% if @shift.errors.any? %>
+            <div>
+                <% @shift.errors.full_messages.each do |message| %>
+                    <p><%= message %></p>
+                <% end %>
+            </div>
+        <% end %>
+
         <%= form_with model: [@business, @schedule_week, @shift] do |form| %>
              <div>
                 <%= label_tag :date, "Date:" %>

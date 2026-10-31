@@ -3,6 +3,7 @@ class ShiftsController < ApplicationController
   before_action :require_login
   before_action :set_business
   before_action :set_schedule_week
+  before_action :require_schedule_manager
 
   def new
     @shift = @schedule_week.shifts.new
@@ -37,5 +38,10 @@ class ShiftsController < ApplicationController
 
   def set_schedule_week
     @schedule_week = @business.schedule_weeks.find(params[:schedule_week_id])
+  end
+
+  def require_schedule_manager
+    membership = @business.memberships.find_by!(user: current_user)
+    head :forbidden unless membership.manages_schedule?
   end
 end
