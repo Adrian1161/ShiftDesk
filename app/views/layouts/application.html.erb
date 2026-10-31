@@ -24,6 +24,16 @@
   </head>
 
   <body>
+    <nav>
+      <% if current_user %>
+        Signed in as <%= current_user.name %>
+        <%= button_to "Sign out", session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", new_session_path %>
+      <% end %>
+    </nav>
+    <% if notice %><p role="status"><%= notice %></p><% end %>
+    <% if alert %><p role="alert"><%= alert %></p><% end %>
     <%= yield %>
   </body>
 </html>

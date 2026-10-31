@@ -1,0 +1,2 @@
+class ScheduleWeeksController < ApplicationController
+end

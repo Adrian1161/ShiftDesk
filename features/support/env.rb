@@ -6,6 +6,7 @@
 
 
 require 'cucumber/rails'
+require 'database_cleaner/active_record'
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how

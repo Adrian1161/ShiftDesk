@@ -1,0 +1,12 @@
+<h1><%= @business.name %></h1>
+
+<h2>Team</h2>
+<ul>
+  <% @business.memberships.includes(:user).each do |membership| %>
+    <li><%= membership.user.name %> (<%= membership.role %>)</li>
+  <% end %>
+</ul>
+
+<% if @business.memberships.exists?(user: current_user, role: "owner") %>
+  <%= link_to "Invite an employee", new_business_invitation_path(@business) %>
+<% end %>

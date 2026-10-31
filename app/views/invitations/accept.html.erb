@@ -1,0 +1,15 @@
+<h1>Join <%= @invitation.business.name %></h1>
+<p>This invitation is for <%= @invitation.email %>.</p>
+
+<% if @error %><p role="alert"><%= @error %></p><% end %>
+
+<%= form_with url: accept_invitation_path(token: params[:token]) do |form| %>
+  <% unless @existing_user %>
+    <p><%= form.label :name, "Your name" %><br><%= form.text_field :name, required: true %></p>
+  <% end %>
+  <p><%= form.label :password, @existing_user ? "Your password" : "Choose a password" %><br><%= form.password_field :password, required: true %></p>
+  <% unless @existing_user %>
+    <p><%= form.label :password_confirmation %><br><%= form.password_field :password_confirmation, required: true %></p>
+  <% end %>
+  <%= form.submit "Join business" %>
+<% end %>
