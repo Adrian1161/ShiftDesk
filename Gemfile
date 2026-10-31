@@ -71,4 +71,4 @@ group :development, :test do
   gem "database_cleaner-active_record", require: false
 end
 
-gem 'rack', '>= 3.2.8'
+gem "rack", ">= 3.2.8"
