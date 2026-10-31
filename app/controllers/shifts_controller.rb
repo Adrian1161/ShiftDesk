@@ -23,7 +23,7 @@ class ShiftsController < ApplicationController
     )
 
     if @shift.save
-      redirect_to [@business, @schedule_week], notice: "Shift created successfully."
+      redirect_to [ @business, @schedule_week ], notice: "Shift created successfully."
     else
       @memberships = @business.memberships
       render :new, status: :unprocessable_entity

@@ -138,15 +138,15 @@ RSpec.describe "Shifts", type: :request do
         end
     end
 
-    describe "POST create shift as employee" do 
-        it "Does not allow an employee create a shift" do 
+    describe "POST create shift as employee" do
+        it "Does not allow an employee create a shift" do
             manager_membership
             employee_membership
             schedule_week
 
             sign_in(employee)
 
-            expect{
+            expect {
                 post business_schedule_week_shifts_path(business, schedule_week), params: {
                     date: schedule_week.week_start.to_s,
                     start_time: "10:00",

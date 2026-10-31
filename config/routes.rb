@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :invitations, only: [ :new, :create ]
     resources :schedule_weeks, only: [ :index, :show ] do
       patch :publish, on: :member
-      resources :shifts, only: [:new, :create]
+      resources :shifts, only: [ :new, :create ]
     end
   end
 
