@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_29_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_01_232248) do
+  create_table "availabilities", force: :cascade do |t|
+    t.integer "membership_id", null: false
+    t.integer "day_of_week", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id", "day_of_week", "start_time", "end_time"], name: "index_availabilities_on_membership_and_window", unique: true
+    t.index ["membership_id"], name: "index_availabilities_on_membership_id"
+  end
+
   create_table "businesses", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -48,6 +59,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_000001) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "availabilities", "memberships"
   add_foreign_key "invitations", "businesses"
   add_foreign_key "invitations", "users", column: "invited_by_id"
   add_foreign_key "memberships", "businesses"
