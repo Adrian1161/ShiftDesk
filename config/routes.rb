@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :time_off_requests, only: [ :new, :create ]
   root "businesses#new"
   resources :businesses, only: [ :new, :create, :show ] do
     resources :invitations, only: [ :new, :create ]

@@ -1,0 +1,33 @@
+<h1>Request time off</h1>
+
+<%= form_with model: @time_off_request do |form| %>
+  <% if @time_off_request.errors.any? %>
+    <div role="alert">
+      <p>Please fix the following:</p>
+      <ul>
+        <% @time_off_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :membership_id, "Business" %>
+    <%= form.collection_select :membership_id, @memberships, :id,
+                               ->(membership) { membership.business.name },
+                               { prompt: "Select a business" } %>
+  </div>
+
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <%= form.submit "Submit request" %>
+<% end %>
