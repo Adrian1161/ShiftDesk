@@ -11,7 +11,7 @@ class CreateAvailabilities < ActiveRecord::Migration[8.1]
     end
 
     add_index :availabilities,
-              [:membership_id, :day_of_week, :start_time, :end_time],
+              [ :membership_id, :day_of_week, :start_time, :end_time ],
               unique: true,
               name: "index_availabilities_on_membership_and_window"
   end
