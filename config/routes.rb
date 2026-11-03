@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :schedule_weeks, only: [ :index, :show ] do
       patch :publish, on: :member
     end
+    resource :upcoming_shifts, only: :show
   end
   resource :session, only: [ :new, :create, :destroy ]
   get "invitations/accept/:token", to: "invitations#accept", as: :accept_invitation
