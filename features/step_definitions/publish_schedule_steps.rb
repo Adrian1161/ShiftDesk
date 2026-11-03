@@ -13,7 +13,8 @@ end
 
 Given("{string} works on {string} from {string} to {string}") do |name, date, from, to|
   membership = Membership.joins(:user).find_by!(users: { name: name })
-  membership.business.schedule_weeks.first!.shifts.create!(
+  week_start = Date.parse(date).beginning_of_week(:monday)
+  membership.business.schedule_weeks.find_by!(week_start: week_start).shifts.create!(
     membership: membership,
     starts_at: Time.zone.parse("#{date} #{from}"),
     ends_at: Time.zone.parse("#{date} #{to}")

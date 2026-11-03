@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       patch :publish, on: :member
       resources :shifts, only: [ :new, :create ]
     end
+    resource :upcoming_shifts, only: :show
   end
 
   resource :session, only: [ :new, :create, :destroy ]
