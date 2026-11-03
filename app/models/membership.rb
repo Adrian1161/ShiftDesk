@@ -1,6 +1,7 @@
 class Membership < ApplicationRecord
   belongs_to :business
   belongs_to :user
+  has_many :availabilities, dependent: :destroy # added as part of availability validation
   has_many :shifts, dependent: :nullify
 
   validates :role, inclusion: { in: %w[owner manager employee] }
