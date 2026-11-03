@@ -3,6 +3,7 @@ class Business < ApplicationRecord
   has_many :users, through: :memberships
   has_many :invitations, dependent: :destroy
   has_many :employees, dependent: :destroy
+  has_many :schedule_weeks, dependent: :destroy
 
   validates :name, presence: true
 end
