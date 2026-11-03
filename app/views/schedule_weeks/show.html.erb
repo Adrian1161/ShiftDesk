@@ -8,6 +8,9 @@
   <p>Draft: employees cannot see this schedule yet.</p>
   <% if @membership.manages_schedule? %>
     <%= button_to "Publish schedule", publish_business_schedule_week_path(@business, @schedule_week), method: :patch %>
+
+    <%= link_to "Create Shift",
+      new_business_schedule_week_shift_path(@business, @schedule_week) %>
   <% end %>
 <% end %>
 
