@@ -63,6 +63,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Code coverage reports for RSpec and Cucumber [https://github.com/simplecov-ruby/simplecov]
+  gem "simplecov", require: false
 end
 
 group :development, :test do

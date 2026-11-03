@@ -1,0 +1,29 @@
+<% content_for :title, "My upcoming shifts · #{@business.name}" %>
+
+<h1>My upcoming shifts</h1>
+
+<% if @shifts.any? %>
+  <table>
+    <caption>Your shifts at <%= @business.name %> from published schedules</caption>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shifts.each do |shift| %>
+        <tr>
+          <td><%= shift.starts_at.strftime("%A, %b %-d, %Y") %></td>
+          <td><%= shift.starts_at.strftime("%-I:%M %p") %> – <%= shift.ends_at.strftime("%-I:%M %p") %></td>
+          <td><%= shift.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no upcoming shifts. Your shifts appear here once a manager publishes the schedule.</p>
+<% end %>
+
+<p><%= link_to "Back to #{@business.name}", @business %></p>

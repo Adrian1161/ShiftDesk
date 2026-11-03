@@ -1,5 +1,10 @@
 <h1><%= @business.name %></h1>
 
+<p>
+  <%= link_to "My upcoming shifts", business_upcoming_shifts_path(@business) %> ·
+  <%= link_to "Schedules", business_schedule_weeks_path(@business) %>
+</p>
+
 <h2>Team</h2>
 <ul>
   <% @business.memberships.includes(:user).each do |membership| %>
