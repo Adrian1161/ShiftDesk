@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_31_174212) do
-ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_31_173922) do
   create_table "businesses", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -48,15 +47,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
-  create_table "shifts", force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "business_id", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["business_id"], name: "index_shifts_on_business_id"
-    t.index ["employee_id"], name: "index_shifts_on_employee_id"
   create_table "schedule_weeks", force: :cascade do |t|
     t.integer "business_id", null: false
     t.date "week_start", null: false
@@ -94,8 +84,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
   add_foreign_key "invitations", "users", column: "invited_by_id"
   add_foreign_key "memberships", "businesses"
   add_foreign_key "memberships", "users"
-  add_foreign_key "shifts", "businesses"
-  add_foreign_key "shifts", "employees"
   add_foreign_key "schedule_weeks", "businesses"
   add_foreign_key "shifts", "memberships"
   add_foreign_key "shifts", "schedule_weeks"
