@@ -15,4 +15,19 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to new_session_path, alert: "Please sign in first." unless current_user
   end
+
+  def authorize_business_access
+    business - Business.find_by(id: params[:business_id] || params[:id])
+    unless current_user && current_user.businesses.include?(business)
+      flash[:alert] = "Access denied to another business's data."
+      redirect_to root_path
+    end
+  end
+
+  def authorize_manager
+    unless current_user&.manager? # UPDATE ME WITH MANAGER CONDITION AFTER ADDING ROLE TO EMPLOYES TABLE
+      flash[:alert] = "Unauthorized"
+      redirect_to root_path
+    end
+  end
 end

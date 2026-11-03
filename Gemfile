@@ -72,3 +72,5 @@ group :development, :test do
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record", require: false
 end
+
+gem "rack", ">= 3.2.8"
