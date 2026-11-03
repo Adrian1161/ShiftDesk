@@ -1,0 +1,47 @@
+<% content_for :title, "#{@schedule_week} · #{@business.name}" %>
+
+<h1><%= @schedule_week %></h1>
+
+<% if @schedule_week.published? %>
+  <p>Published <%= @schedule_week.published_at.strftime("%b %-d, %Y at %-I:%M %p") %></p>
+<% else %>
+  <p>Draft: employees cannot see this schedule yet.</p>
+  <% if @membership.manages_schedule? %>
+    <%= button_to "Publish schedule", publish_business_schedule_week_path(@business, @schedule_week), method: :patch %>
+
+    <%= link_to "Create Shift",
+      new_business_schedule_week_shift_path(@business, @schedule_week) %>
+  <% end %>
+<% end %>
+
+<% @schedule_week.days.each do |day| %>
+  <% shifts = @shifts_by_day.fetch(day, []) %>
+  <section aria-labelledby="day-<%= day.iso8601 %>">
+    <h2 id="day-<%= day.iso8601 %>"><%= day.strftime("%A, %b %-d") %></h2>
+
+    <% if shifts.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Employee</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shifts.each do |shift| %>
+            <tr>
+              <td><%= shift.starts_at.strftime("%-I:%M %p") %> – <%= shift.ends_at.strftime("%-I:%M %p") %></td>
+              <td><%= shift.membership ? shift.membership.user.name : "Unassigned" %></td>
+              <td><%= shift.notes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No shifts scheduled.</p>
+    <% end %>
+  </section>
+<% end %>
+
+<p><%= link_to "Back to all schedules", business_schedule_weeks_path(@business) %></p>
