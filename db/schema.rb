@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[8.1].define(version: 2026_11_02_011021) do
 ActiveRecord::Schema[8.1].define(version: 2026_11_01_232248) do
   create_table "availabilities", force: :cascade do |t|
     t.integer "membership_id", null: false
@@ -61,6 +62,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_31_173922) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
+  create_table "time_off_requests", force: :cascade do |t|
+    t.integer "membership_id", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_time_off_requests_on_membership_id"
   create_table "schedule_weeks", force: :cascade do |t|
     t.integer "business_id", null: false
     t.date "week_start", null: false
@@ -120,6 +128,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_31_173922) do
   add_foreign_key "invitations", "users", column: "invited_by_id"
   add_foreign_key "memberships", "businesses"
   add_foreign_key "memberships", "users"
+  add_foreign_key "time_off_requests", "memberships"
   add_foreign_key "shifts", "businesses"
   add_foreign_key "shifts", "employees"
   add_foreign_key "schedule_weeks", "businesses"
