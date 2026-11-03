@@ -22,7 +22,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_01_232248) do
     t.index ["membership_id"], name: "index_availabilities_on_membership_id"
   end
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
   create_table "businesses", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
