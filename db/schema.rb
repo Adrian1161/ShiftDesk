@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[8.1].define(version: 2026_10_31_174212) do
 ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_31_173922) do
   create_table "businesses", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -48,11 +49,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_29_100002) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
-  create_table "shifts", force: :cascade do |t|
-    t.integer "employee_id", null: false
+  create_table "schedule_weeks", force: :cascade do |t|
     t.integer "business_id", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date "week_start", null: false
+    t.string "status", default: "draft", null: false
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id", "week_start"], name: "index_schedule_weeks_on_business_id_and_week_start", unique: true
+    t.index ["business_id"], name: "index_schedule_weeks_on_business_id"
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.integer "schedule_week_id", null: false
+    t.integer "membership_id"
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_shifts_on_business_id"
